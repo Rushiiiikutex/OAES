@@ -821,6 +821,7 @@ async function connectToDB(retries = 5, delay = 3000) {
     }
   }
 }
+console.log("ok connected ")
 connectToDB()
 
 app.post("/login-options/evaluatorlogin", async (req, res) => {

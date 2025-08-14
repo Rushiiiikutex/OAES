@@ -1,152 +1,3 @@
-// import React, { useState } from "react";
-
-// const AdminLogin = () => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [showPassword, setShowPassword] = useState(false);
-//   const [error, setError] = useState("");
-
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-//     setError("");
-
-//     console.log("Email:", email);
-//     console.log("Password:", password);
-
-//     try {
-//       const response = await fetch(
-//         "http://localhost:7000/login-options/adminlogin",
-//         {
-//           method: "POST",
-//           headers: {
-//             "Content-Type": "application/json",
-//           },
-//           body: JSON.stringify({ email, password }),
-//         }
-//       );
-
-//       if (!response.ok) {
-//         const data = await response.json();
-//         console.error("Login error:", data.error);
-//         setError(data.error || "Something went wrong. Please try again.");
-//         return;
-//       }
-
-//       const data = await response.json();
-//       alert(data.message);
-//       window.location.href = "/admin-dashboard";
-//     } catch (error) {
-//       console.error("Error:", error);
-//       setError("Something went wrong. Please try again.");
-//     }
-//   };
-
-//   const togglePasswordVisibility = () => {
-//     setShowPassword(!showPassword);
-//   };
-
-//   return (
-//     <div className="bg-gray-100 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-//       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg">
-//         <div>
-//           <h1 className="text-3xl font-bold text-gray-900">Admin Login</h1>
-//           <p className="mt-2 text-sm text-gray-600">Welcome back! Please enter your details</p>
-//         </div>
-//         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
-//           <div className="space-y-1">
-//             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-//               Enter your email *
-//             </label>
-//             <div className="mt-1">
-//               <input
-//                 id="email"
-//                 name="email"
-//                 type="email"
-//                 autoComplete="email"
-//                 required
-//                 value={email}
-//                 onChange={(e) => setEmail(e.target.value)}
-//                 placeholder="Enter your email"
-//                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-//               />
-//             </div>
-//           </div>
-
-//           <div className="space-y-1">
-//             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-//               Password *
-//             </label>
-//             <div className="mt-1 relative">
-//               <input
-//                 id="password"
-//                 name="password"
-//                 type={showPassword ? "text" : "password"}
-//                 autoComplete="current-password"
-//                 required
-//                 value={password}
-//                 onChange={(e) => setPassword(e.target.value)}
-//                 placeholder="Password"
-//                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-//               />
-//               <button
-//                 type="button"
-//                 className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
-//                 onClick={togglePasswordVisibility}
-//               >
-//                 {showPassword ? (
-//                   <span aria-hidden="true">🙈</span>
-//                 ) : (
-//                   <span aria-hidden="true">👁️</span>
-//                 )}
-//               </button>
-//             </div>
-//           </div>
-
-//           {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
-
-//           <div className="flex items-center justify-between">
-//             <div className="flex items-center">
-//               <input
-//                 id="remember-me"
-//                 name="remember-me"
-//                 type="checkbox"
-//                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-//                 onChange={(e) => {
-//                   localStorage.setItem("rememberMe", e.target.checked);
-//                 }}
-//               />
-//               <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-//                 Remember me
-//               </label>
-//             </div>
-
-//             <div className="text-sm">
-//               <a
-//                 href="/reset-password"
-//                 className="font-medium text-blue-600 hover:text-blue-500"
-//                 onClick={() => localStorage.setItem("emailToReset", email)}
-//               >
-//                 Forgot password?
-//               </a>
-//             </div>
-//           </div>
-
-//           <div>
-//             <button
-//               type="submit"
-//               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-300"
-//             >
-//               LOGIN
-//             </button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AdminLogin;
-
 import React, { useState, useEffect } from "react";
 
 const AdminLogin = () => {
@@ -158,7 +9,6 @@ const AdminLogin = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Load saved email if remember me was checked previously
   useEffect(() => {
     const remembered = localStorage.getItem("rememberMe") === "true";
     if (remembered) {
@@ -176,7 +26,6 @@ const AdminLogin = () => {
     console.log("Email:", email);
     console.log("Password:", password);
 
-    // Save email if remember me is checked
     if (rememberMe) {
       localStorage.setItem("savedEmail", email);
       localStorage.setItem("rememberMe", "true");
@@ -233,11 +82,11 @@ const AdminLogin = () => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Admin Portal</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Admin Login</h1>
           {isHovered ? (
             <div className="h-1 w-20 bg-blue-500 mx-auto mt-2 mb-3 rounded-full transition-all duration-300"></div>
           ) : null}
-          <p className="mt-2 text-sm text-gray-600">Welcome back! Please sign in to continue</p>
+          <p className="mt-2 text-sm text-gray-600">Welcome back! </p>
         </div>
         
         <div className="relative">
@@ -345,16 +194,6 @@ const AdminLogin = () => {
                 Remember me
               </label>
             </div>
-
-            <div className="text-sm">
-              <a
-                href="/reset-password"
-                className={`font-medium ${isHovered ? 'text-blue-700' : 'text-blue-600'} hover:text-blue-500 transition-colors duration-300`}
-                onClick={() => localStorage.setItem("emailToReset", email)}
-              >
-                Forgot password?
-              </a>
-            </div>
           </div>
 
           <div>
@@ -383,7 +222,7 @@ const AdminLogin = () => {
         </form>
         
         <div className={`text-center text-xs ${isHovered ? 'text-blue-500' : 'text-gray-500'} mt-6 transition-colors duration-300`}>
-          <p>Protected administrative area. Unauthorized access is prohibited.</p>
+          <p></p>
         </div>
       </div>
     </div>
@@ -391,3 +230,4 @@ const AdminLogin = () => {
 };
 
 export default AdminLogin;
+
