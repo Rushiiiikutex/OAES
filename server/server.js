@@ -23,8 +23,8 @@ const PORT = process.env.PORT || 7000;
 
 cloudinary.config({
   cloud_name: " dybikmq0t",
-  api_key: "815433726972854",
-  api_secret: "DhICqR6F99hfK1v5k91fBvCE_pI",
+  api_key: "",
+  api_secret: "",
 });
 
 app.use(express.json());
