@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 7000;
 
 
 cloudinary.config({
-  cloud_name: " dybikmq0t",
+  cloud_name: " ",
   api_key: "",
   api_secret: "",
 });
